@@ -193,6 +193,33 @@ screen.connect_signal("request::desktop_decoration", function(s)
     },
   })
 
+  -- Create the wibox
+  s.mywibox = awful.wibar({
+    position = "top",
+    screen = s,
+    height = 25,
+    width = 3480,
+    bg = "#2E3440BF",
+    border_color = "#535d6c",
+    widget = {
+      layout = wibox.layout.align.horizontal,
+      { -- Left widgets
+        layout = wibox.layout.fixed.horizontal,
+        s.mypromptbox,
+      },
+      {
+        layout = wibox.layout.align.horizontal,
+        wibox.container.background(wibox.container.margin(s.mytaglist, 1685, 0, 2, 2)),
+      },
+      { -- Right widgets
+        layout = wibox.layout.fixed.horizontal,
+        wibox.widget.systray(),
+        wibox.container.margin(mytextclock, 0, 50, 0, 0)
+      },
+    },
+  })
+  s.mywibox.visible = true
+
 end)
 -- }}}
 
